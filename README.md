@@ -189,7 +189,8 @@ Charger-01
 entonces en `Control Center -> WebSocket Options -> Backend URL` se debe configurar:
 
 ```text
-wss://abc123.execute-api.us-east-1.amazonaws.com/ocpp?chargerId=Charger-01
+wss://abc123.execute-api.us-east-1.amazonaws.com/ocpp
+?chargerId=Charger-01
 ```
 
 El valor de `chargerId` debe coincidir exactamente con el `ID del cargador` creado en el dashboard.
