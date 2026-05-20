@@ -267,6 +267,10 @@ En el dashboard se muestra `Finishing` mientras se completa el cierre.
 
 ![Dashboard Finishing](./docs/readme/19-dashboard-finishing.jpg)
 
+### Estado `Faulted`
+
+El cargador o conector detectó una falla que impide operar normalmente. Usualmente requiere intervención, reinicio o diagnóstico antes de volver a estar disponible.
+
 ## Iniciar y cortar carga
 
 Resumen de acciones disponibles:
