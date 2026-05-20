@@ -241,11 +241,11 @@ En el dashboard, `SuspendedEVSE` habilita el boton `Cortar`, para poder detener 
 
 El simulador puede mostrar al conector como `SuspendedEV`, indica que haycarga habilitada pero auto Not Ready
 
-![Simulador SuspendedEV](.docs/readme/21-dashboard-suspended-ev.jpg)
+![Simulador SuspendedEV](./docs/readme/21-dashboard-suspended-ev.jpg)
 
 En el dashboard, `SuspendedEV` habilita el boton `Cortar`, para poder detener la transaccion aunque no este cargando activamente.
 
-![Simulador SuspendedEV](.docs/readme/20-dashboard-suspended-ev.jpg)
+![Simulador SuspendedEV](./docs/readme/20-dashboard-suspended-ev.jpg)
 
 ### Estado `Charging`
 
