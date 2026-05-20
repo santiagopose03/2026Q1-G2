@@ -237,7 +237,7 @@ En el dashboard, `SuspendedEVSE` habilita el boton `Cortar`, para poder detener 
 
 ![Dashboard SuspendedEVSE](./docs/readme/18-dashboard-suspended-evse.jpg)
 
-###Estado `SuspendedEV` 
+### Estado `SuspendedEV` 
 
 El simulador puede mostrar al conector como `SuspendedEV`, indica que haycarga habilitada pero auto Not Ready
 
