@@ -266,8 +266,10 @@ Resumen de acciones disponibles:
 | `Available` | Sin accion. |
 | `Preparing` | `Iniciar`. |
 | `SuspendedEVSE` | `Cortar`. |
+| `SuspendedEV` | `Cortar`. |
 | `Charging` | `Cortar`. |
 | `Finishing` | Sin accion. |
+| `Faulted` | sin accion. |
 | `Unavailable` | Sin accion. |
 
 El flujo principal de prueba es:
