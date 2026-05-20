@@ -186,7 +186,7 @@ y en el dashboard se creo un cargador llamado:
 Charger-01
 ```
 
-entonces en `Control Center -> WebSocket Options -> Backend URL y ChargerboxId` se debe configurar:
+entonces en `Control Center -> WebSocket Options -> Backend URL y Chargerbox ID` se debe configurar:
 
 ```text
 wss://abc123.execute-api.us-east-1.amazonaws.com/ocpp
