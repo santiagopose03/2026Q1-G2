@@ -237,6 +237,16 @@ En el dashboard, `SuspendedEVSE` habilita el boton `Cortar`, para poder detener 
 
 ![Dashboard SuspendedEVSE](./docs/readme/18-dashboard-suspended-evse.jpg)
 
+###Estado `SuspendedEV` 
+
+El simulador puede mostrar al conector como `SuspendedEV`, indica que haycarga habilitada pero auto Not Ready
+
+![Simulador SuspendedEV](.docs/readme/21-dashboard-suspended-ev.jpg)
+
+En el dashboard, `SuspendedEV` habilita el boton `Cortar`, para poder detener la transaccion aunque no este cargando activamente.
+
+![Simulador SuspendedEV](.docs/readme/20-dashboard-suspended-ev.jpg)
+
 ### Estado `Charging`
 
 Despues de presionar `Iniciar` desde el dashboard, para pasar a `Charging` se tocan todos los botones del conector en el simulador hasta que queden como `Plugged`, `Ready` y `Ready`. En este estado el vehiculo esta cargando.
