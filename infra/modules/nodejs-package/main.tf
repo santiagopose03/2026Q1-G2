@@ -31,5 +31,5 @@ resource "null_resource" "npm_build" {
     command     = "npm run build --quiet"
   }
 
-  depends_on = [local_file.env]
+  depends_on = [local_file.env, null_resource.npm_install]
 }
