@@ -8,7 +8,7 @@ module "nodejs_package" {
 
 resource "null_resource" "s3_sync" {
   triggers = {
-    build = module.nodejs_package.npm_build.id
+    build = module.nodejs_package.id
   }
 
   provisioner "local-exec" {
