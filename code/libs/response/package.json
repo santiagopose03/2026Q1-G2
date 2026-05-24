@@ -1,0 +1,16 @@
+{
+  "name": "@lib/response",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.161",
+    "typescript": "^6.0.3"
+  }
+}

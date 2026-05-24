@@ -1,0 +1,30 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --panel-muted: #f0f3f6;
+  --text: #1d2733;
+  --muted: #697586;
+  --border: #dce2e8;
+  --accent: #0f766e;
+  --accent-strong: #0b5d57;
+  --danger: #b42318;
+  --danger-bg: #fff1f0;
+  --ok: #087443;
+  --warn: #a15c07;
+  --shadow: 0 16px 42px rgba(20, 30, 45, 0.08);
+  --sans: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.65; }
+#root { min-height: 100vh; }

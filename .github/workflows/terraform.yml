@@ -1,0 +1,108 @@
+name: Terraform
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Terraform action to run
+        required: true
+        type: choice
+        default: plan
+        options:
+          - plan
+          - apply
+          - destroy
+      aws_region:
+        description: AWS region to deploy into
+        required: true
+        default: us-east-1
+      state_bucket:
+        description: S3 bucket used to persist Terraform state
+        required: true
+      root_user_email:
+        description: Root user email for Cognito
+        required: true
+      cognito_domain:
+        description: Cognito hosted UI domain prefix
+        required: true
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: infra
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ inputs.aws_region }}
+
+      - name: Ensure Terraform state bucket exists
+        working-directory: .
+        shell: bash
+        run: |
+          if ! aws s3api head-bucket --bucket "${{ inputs.state_bucket }}" 2>/dev/null; then
+            if [ "${{ inputs.aws_region }}" = "us-east-1" ]; then
+              aws s3api create-bucket \
+                --bucket "${{ inputs.state_bucket }}"
+            else
+              aws s3api create-bucket \
+                --bucket "${{ inputs.state_bucket }}" \
+                --create-bucket-configuration LocationConstraint="${{ inputs.aws_region }}"
+            fi
+          fi
+
+          aws s3api put-bucket-versioning \
+            --bucket "${{ inputs.state_bucket }}" \
+            --versioning-configuration Status=Enabled
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform init
+        run: >
+          terraform init
+          -backend-config="bucket=${{ inputs.state_bucket }}"
+          -backend-config="key=terraform.tfstate"
+          -backend-config="region=${{ inputs.aws_region }}"
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform plan
+        if: ${{ inputs.action == 'plan' || inputs.action == 'apply' }}
+        run: >
+          terraform plan
+          -var="aws_region=${{ inputs.aws_region }}"
+          -var="root_user_email=${{ inputs.root_user_email }}"
+          -var="cognito_domain=${{ inputs.cognito_domain }}"
+
+      - name: Terraform apply
+        if: ${{ inputs.action == 'apply' }}
+        run: >
+          terraform apply -auto-approve
+          -var="aws_region=${{ inputs.aws_region }}"
+          -var="root_user_email=${{ inputs.root_user_email }}"
+          -var="cognito_domain=${{ inputs.cognito_domain }}"
+
+      - name: Terraform destroy
+        if: ${{ inputs.action == 'destroy' }}
+        run: >
+          terraform destroy -auto-approve
+          -var="aws_region=${{ inputs.aws_region }}"
+          -var="root_user_email=${{ inputs.root_user_email }}"
+          -var="cognito_domain=${{ inputs.cognito_domain }}"
